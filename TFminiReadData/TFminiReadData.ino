@@ -29,11 +29,19 @@ void loop() {
   while( Wire.available())
   {
       rx_buf[i] = Wire.read(); // received one byte
-      Serial.print(rx_buf[i], HEX);  // Printf data
-      Serial.print(" ");
       i++;
   }
- Serial.print("\r\n");
+  
+  // OUTPUT
+  Serial.print("TrigFlag= ");
+  Serial.print(rx_buf[0]);
+  Serial.print(",Dist= ");
+  Serial.print(rx_buf[2]|(rx_buf[3] << 8));
+  Serial.print(",Strength= ");
+  Serial.print(rx_buf[4]|(rx_buf[5] << 8));
+  Serial.print(",Inttime= ");
+  Serial.print(rx_buf[6]);
+  Serial.print("\r\n");
 
   delay(5);
 }
